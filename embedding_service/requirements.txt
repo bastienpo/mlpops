@@ -1,5 +1,10 @@
 pulsar
 transformers
+ctransformers
 numpy
 milvus
 pymilvus
+pulsar-client
+torch
+trochvision
+torchaudio
