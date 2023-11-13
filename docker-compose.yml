@@ -112,9 +112,9 @@ services:
     environment:
       MINIO_ACCESS_KEY: minioadmin
       MINIO_SECRET_KEY: minioadmin
-    ports:
-      - "9012:9001"
-      - "9013:9000"
+    # ports:
+    #   - "9012:9001"
+    #   - "9013:9000"
     volumes:
       - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/minio:/minio_data
     command: minio server /minio_data --console-address ":9001"
@@ -144,7 +144,7 @@ services:
       timeout: 20s
       retries: 3
     ports:
-      - "19530:19530"
+      - "19530:19530" # Milvus port from which you can access Milvus server.
       - "9091:9091"
     depends_on:
       - "etcd"
