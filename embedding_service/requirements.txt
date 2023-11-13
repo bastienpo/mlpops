@@ -1,0 +1,5 @@
+pulsar
+transformers
+numpy
+milvus
+pymilvus
