@@ -48,6 +48,7 @@ index = {
     "metric_type": "L2",
     "params": {"nlist": 4},
 }
+embedding_collection.create_index(field_name="embeddings", index_params=index)
 
 """
 Embedding setup
