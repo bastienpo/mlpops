@@ -12,25 +12,26 @@ from pymilvus import (
 )
 
 # TODO - variables d'environnement
-pulsar_service_url = 'pulsar://localhost:6650'
-pulsar_topic = 'predction-topic'
-pulsar_subscription = 'prediction-subscription'
+pulsar_service_url = "pulsar://localhost:6650"
+pulsar_topic = "predction-topic"
+pulsar_subscription = "prediction-subscription"
 
 client = pulsar.Client(pulsar_service_url)
 
-
-consumer = client.newConsumer() \
-                .topic(pulsar_topic) \
-                .subscriptionName(pulsar_subscription) \
-                .subscribe()
+consumer = (
+    client.newConsumer()
+    .topic(pulsar_topic)
+    .subscriptionName(pulsar_subscription)
+    .subscribe()
+)
 
 """
 Milvus setup
 """
 # TODO - variables d'environnement
 milvus_collection_name = "embedding_collection"
-milvus_port = '19530'
-milvus_host = 'localhost'
+milvus_port = "19530"
+milvus_host = "localhost"
 
 connections.connect("default", host="localhost", port="19530")
 
@@ -40,17 +41,21 @@ fields = [
     FieldSchema(name="embeddings", dtype=DataType.FLOAT_VECTOR, dim=512),
     FieldSchema(name="prediction", dtype=DataType.VARCHAR, max_length=10000),
 ]
-schema = CollectionSchema(fields, f"{milvus_collection_name} is the name of the embedding collection")
+schema = CollectionSchema(
+    fields, f"{milvus_collection_name} is the name of the embedding collection"
+)
 embedding_collection = Collection(milvus_collection_name, schema)
 
 while True:
     # Consume message
-    msg = consumer.receive() # {"embedding"": [0.1, 0.2, ...], "prediction": "Why is Ai not really AI ? AI don't know."}
+    msg = (
+        consumer.receive()
+    )  # {"embedding"": [0.1, 0.2, ...], "prediction": "Why is Ai not really AI ? AI don't know."}
 
     try:
         # Insert message in Milvus
         embedding_collection.insert([msg.value()])
-    
+
         # Ack message
         consumer.acknowledge(msg)
 
