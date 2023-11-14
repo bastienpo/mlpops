@@ -167,3 +167,5 @@ cython_debug/
 
 # ignore data files
 **/data
+
+gradio_cached_examples/
