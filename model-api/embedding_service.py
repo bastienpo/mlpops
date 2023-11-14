@@ -17,10 +17,14 @@ Pulsar setup
 """
 # TODO - variables d'environnement
 pulsar_service_url = 'pulsar://localhost:6650'
-pulsar_topic = 'my-topic'
-pulsar_subscription = 'my-subscription'
+pulsar_topic = 'predction-topic'
+pulsar_subscription = 'prediction-subscription'
 
 client = pulsar.Client(pulsar_service_url)
+
+producer = client.newProducer() \
+                .topic(pulsar_topic) \
+                .create()
 
 """
 Milvus setup
@@ -83,9 +87,11 @@ def predict_and_insert(msg, embedding):
     print("Computing result")
     prediction = model(msg) # TODO: replace with api call to LLM container
     
+    # Send result to pulsar queue to be stored in db
+    producer.send({"embeddings": embedding, "prediction": prediction})
+
     # Store result in database
-    # TODO: write to pulsar queue
-    embedding_collection.insert({"embeddings": embedding, "prediction": prediction}) # Automatically add pk
+    # embedding_collection.insert({"embeddings": embedding, "prediction": prediction}) # Automatically add pk
 
     return prediction
 
@@ -118,8 +124,5 @@ def process_message(msg):
 
     # Compute result and store it in database
     return predict_and_insert(msg, embedding)
-
-process_message("What is the universal answer ?")
-process_message("What is the universal answer ?")
 
 client.close()
