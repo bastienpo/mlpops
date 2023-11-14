@@ -1,6 +1,8 @@
 import gradio as gr
+import time
 
 def response(message, history):
+    # Call API
     return "Hello world!"
 
 demo = gr.ChatInterface(

@@ -84,6 +84,7 @@ def predict_and_insert(msg, embedding):
     prediction = model(msg) # TODO: replace with api call to LLM container
     
     # Store result in database
+    # TODO: write to pulsar queue
     embedding_collection.insert({"embeddings": embedding, "prediction": prediction}) # Automatically add pk
 
     return prediction
