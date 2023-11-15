@@ -17,7 +17,7 @@ Pulsar setup
 """
 # TODO - variables d'environnement
 pulsar_service_url = "pulsar://localhost:6650"
-pulsar_topic = "predction-topic"
+pulsar_topic = "prediction-topic"
 pulsar_subscription = "prediction-subscription"
 
 client = pulsar.Client(pulsar_service_url)
