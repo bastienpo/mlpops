@@ -7,7 +7,7 @@ class LLMRequest(BaseModel):
 
 app = FastAPI()
 
-@app.get("/health")
+@app.get("/healthz")
 def read_root():
     return "OK"
 

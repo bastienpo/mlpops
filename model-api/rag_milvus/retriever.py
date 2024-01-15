@@ -6,7 +6,7 @@ from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from langchain_community.vectorstores.milvus import Milvus
 
 HUGGINGFACEHUB_API_TOKEN = "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"
-MILVUS_HOST = "127.0.0.1"
+MILVUS_HOST = "host.docker.internal"
 MILVUS_PORT = "19530"
 
 embeddings_model = HuggingFaceInferenceAPIEmbeddings(
@@ -19,3 +19,5 @@ vector_db = Milvus(
     connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT},
     collection_name="collection_retrival",
 )
+
+
