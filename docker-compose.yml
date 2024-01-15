@@ -159,6 +159,10 @@ services:
       - net
     ports:
       - "9000:9000"
+    depends_on:
+      - "minio"
+      - "standalone"
+      - "etcd"
 
   gradio-ui:
     container_name: gradio-ui
@@ -169,6 +173,8 @@ services:
       - net
     ports:
       - "7860:7860"
+    depends_on:
+      - "model-api"
 
 networks:
   net:

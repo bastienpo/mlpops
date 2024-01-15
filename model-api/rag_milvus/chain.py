@@ -5,6 +5,10 @@ Langchain chain for RAG model with Milvus
 from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableParallel, RunnablePassthrough
+
+from .prompt import llama_prompt_template
+from .retriever import vector_db
 
 HUGGINGFACEHUB_API_TOKEN = "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"
 
@@ -13,9 +17,9 @@ API_URL = (
 )
 
 
-template = """ {question} """
+prompt = ChatPromptTemplate.from_template(llama_prompt_template)
 
-prompt = ChatPromptTemplate.from_template(template)
+retriever = vector_db.as_retriever()
 
 model = HuggingFaceEndpoint(
     endpoint_url=API_URL,
@@ -23,4 +27,9 @@ model = HuggingFaceEndpoint(
     huggingfacehub_api_token=HUGGINGFACEHUB_API_TOKEN,
 )
 
-chain = prompt | model | StrOutputParser()
+chain = (
+    RunnableParallel({"context": retriever, "message": RunnablePassthrough()})
+    | prompt
+    | model
+    | StrOutputParser()
+)

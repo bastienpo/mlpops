@@ -1,8 +1,7 @@
-fastapi
-requests
-uvicorn
-pymilvus
-langchain
-langchain-core
-langchain-community
-huggingface_hub
+fastapi==0.109.0
+uvicorn==0.25.0
+pymilvus==2.3.5 
+langchain==0.1.0 
+langchain-community==0.0.12 
+langchain-core==0.1.10 
+huggingface-hub==0.20.2 
