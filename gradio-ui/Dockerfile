@@ -1,4 +1,4 @@
-FROM python:3.12-alpine
+FROM python:3.11-alpine
 
 WORKDIR /app
 
@@ -10,4 +10,4 @@ EXPOSE 7860
 
 ENV APP_ENV production
 
-CMD ["python", "main.py"]
+CMD ["python", "app.py"]

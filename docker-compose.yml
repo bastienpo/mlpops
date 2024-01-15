@@ -150,6 +150,26 @@ services:
       - "etcd"
       - "minio"
 
+  model-api:
+    container_name: model-api
+    build:
+      context: ./model-api
+      dockerfile: Dockerfile
+    networks:
+      - net
+    ports:
+      - "9000:9000"
+
+  gradio-ui:
+    container_name: gradio-ui
+    build:
+      context: ./gradio-ui
+      dockerfile: Dockerfile
+    networks:
+      - net
+    ports:
+      - "7860:7860"
+
 networks:
   net:
     driver: bridge

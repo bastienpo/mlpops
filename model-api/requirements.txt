@@ -1,7 +1,8 @@
-fastapi==0.104.1 
-pydantic==2.4.2
-requests==2.31.0
-uvicorn==0.24.0
-pulsar-client==3.3.0
-numpy
+fastapi
+requests
+uvicorn
 pymilvus
+langchain
+langchain-core
+langchain-community
+huggingface_hub
