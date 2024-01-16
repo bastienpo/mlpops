@@ -63,42 +63,27 @@ services:
       minio:
         condition: service_healthy
 
-  model-api:
-    container_name: model-api
-    build:
-      context: ./model-api
-      dockerfile: Dockerfile
-    ports:
-      - "9042:9042"
-    networks:
-      - default
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9042/healthz"]
-      interval: 30s
-      timeout: 20s
-      retries: 5
-    depends_on:
-      standalone:
-        condition: service_healthy
-      etcd:
-        condition: service_healthy
-      minio:
-        condition: service_healthy
-
-  data-ingestion:
-    container_name: data-ingestion
-    build:
-      context: ./data-ingestion/producer
-      dockerfile: Dockerfile
-    networks:
-      - default
-    depends_on:
-      standalone:
-        condition: service_healthy
-      etcd:
-        condition: service_healthy
-      minio:
-        condition: service_healthy
+  # model-api:
+  #   container_name: model-api
+  #   build:
+  #     context: ./model-api
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "9042:9042"
+  #   networks:
+  #     - default
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:9042/healthz"]
+  #     interval: 30s
+  #     timeout: 20s
+  #     retries: 5
+  #   depends_on:
+  #     standalone:
+  #       condition: service_healthy
+  #     etcd:
+  #       condition: service_healthy
+  #     minio:
+  #       condition: service_healthy
 
   zookeeper:
     image: apachepulsar/pulsar:latest
