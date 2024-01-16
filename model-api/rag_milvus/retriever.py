@@ -9,15 +9,13 @@ HUGGINGFACEHUB_API_TOKEN = "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"
 MILVUS_HOST = "host.docker.internal"
 MILVUS_PORT = "19530"
 
-embeddings_model = HuggingFaceInferenceAPIEmbeddings(
+embeddings = HuggingFaceInferenceAPIEmbeddings(
     api_key=HUGGINGFACEHUB_API_TOKEN,
     model_name="distilbert-base-uncased",
 )
 
 vector_db = Milvus(
-    embeddings_model,
+    embeddings,
     connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT},
     collection_name="collection_retrival",
 )
-
-
