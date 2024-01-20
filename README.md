@@ -26,9 +26,9 @@ The following command will execute the docker-compose.yml
 docker compose up -d
 ```
 
-We decided to serve the model with ollama with a TinyLlama model that was fintuned with a QLora and quantized in 4bits. 
+We decided to serve the model using Ollama with a TinyLlama model that was finetuned with QLoRa and quantized to 4 bits.
 
-In addition to that to ingest data in the database you need to have an instanec of pulsar brooker and zookerper running on localhost.
+In addition to that, to ingest data into the database, you need to have instances of Pulsar broker and Zookeeper running on localhost.
 
 
 Next, you can interact with the UI at the following address: [`localhost:7860`](http://localhost:7860).
