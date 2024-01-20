@@ -1,5 +1,5 @@
 from fastapi import FastAPI, status
-from rag_milvus import chain
+from rag_milvus import chain, query_store
 from pydantic import BaseModel
 
 class LLMRequest(BaseModel):
@@ -33,5 +33,6 @@ def get_health() -> HealthCheck:
 
 @app.post("/chain")
 def read_chain(llm_request: LLMRequest):
-    resquest = llm_request.dict()    
+    resquest = llm_request.dict()
+    query_store.add_texts([llm_request.user_input])
     return chain.invoke(resquest)
