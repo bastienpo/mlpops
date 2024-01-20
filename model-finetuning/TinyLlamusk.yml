@@ -1,23 +1,24 @@
-base_model: TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T
+base_model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
 model_type: LlamaForCausalLM
 tokenizer_type: LlamaTokenizer
 is_llama_derived_model: true
+hub_model_id: TinyLlamusk
 
 load_in_8bit: false
 load_in_4bit: true
 strict: false
 
 datasets:
-  - path: mhenrichsen/alpaca_2k_test
-    type: alpaca
+  - path: lcama/elon-tweets
+    type: completion
 dataset_prepared_path:
-val_set_size: 0.05
+val_set_size: 0.02
 output_dir: ./qlora-out
 
 adapter: qlora
 lora_model_dir:
 
-sequence_len: 4096
+sequence_len: 2048
 sample_packing: true
 pad_to_sequence_len: true
 
@@ -28,14 +29,14 @@ lora_target_modules:
 lora_target_linear: true
 lora_fan_in_fan_out:
 
-wandb_project:
+wandb_project: axolotl-tinyllama
 wandb_entity:
 wandb_watch:
 wandb_name:
 wandb_log_model:
 
-gradient_accumulation_steps: 4
-micro_batch_size: 2
+gradient_accumulation_steps: 2
+micro_batch_size: 1
 num_epochs: 4
 optimizer: paged_adamw_32bit
 lr_scheduler: cosine
@@ -43,8 +44,8 @@ learning_rate: 0.0002
 
 train_on_inputs: false
 group_by_length: false
-bf16: true
-fp16: false
+bf16: false
+fp16: true
 tf32: false
 
 gradient_checkpointing: true
@@ -56,7 +57,7 @@ xformers_attention:
 flash_attention: false
 
 warmup_steps: 10
-evals_per_epoch: 4
+evals_per_epoch: 2
 saves_per_epoch: 1
 debug:
 deepspeed:
