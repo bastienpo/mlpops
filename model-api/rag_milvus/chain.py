@@ -10,7 +10,6 @@ from langchain_community.chat_models import ChatOllama
 
 from .prompt import llama_prompt_template
 from .retriever import vector_db
-from .query_storing import query_store
 
 prompt = ChatPromptTemplate.from_template(llama_prompt_template)
 
