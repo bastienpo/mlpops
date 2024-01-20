@@ -1,8 +1,15 @@
 import gradio as gr
+import requests
 
-def response(message, history):
-    # Call API
-    return "Hello world!"
+def response(message, history):    
+    res = requests.post(
+        "http://localhost:9042/chain", 
+        json={
+            "user_input": message, 
+        }
+    )
+
+    return res.json()
 
 demo = gr.ChatInterface(
     response,
@@ -10,10 +17,11 @@ demo = gr.ChatInterface(
     textbox=gr.Textbox(placeholder="What is 2 + 2 ?", container=False, scale=7),
     title="Mlpops chatbot",
     examples=["Hello", "Am I cool?", "Are tomatoes vegetables?"],
-    cache_examples=True,
+    cache_examples=False,
     retry_btn=None,
     undo_btn="Delete Previous",
     clear_btn="Clear",
 )
 
-demo.launch(share=True, server_name="0.0.0.0", server_port=7860)
+if __name__ == "__main__":
+    demo.queue().launch(server_name="0.0.0.0", server_port=7860)

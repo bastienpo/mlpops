@@ -26,12 +26,3 @@ if __name__ == "__main__":
 
     producer.flush()
     producer.close()
-
-# embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-
-# vector_db = Milvus.from_documents(
-#     documents=splits,
-#     embedding=embeddings,
-#     connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT},
-#     collection_name="collection_retrival",
-# )

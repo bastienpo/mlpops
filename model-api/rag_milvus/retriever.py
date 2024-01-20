@@ -2,20 +2,23 @@
 RAG with Milvus and distilbert-base-uncased Embeddings
 """
 
-from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
-from langchain_community.vectorstores.milvus import Milvus
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Milvus
 
-HUGGINGFACEHUB_API_TOKEN = "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"
-MILVUS_HOST = "host.docker.internal"
+MILVUS_HOST = "localhost"
 MILVUS_PORT = "19530"
 
-embeddings = HuggingFaceInferenceAPIEmbeddings(
-    api_key=HUGGINGFACEHUB_API_TOKEN,
-    model_name="distilbert-base-uncased",
+model_name = "sentence-transformers/all-mpnet-base-v2"
+model_kwargs = {"device": "cpu"}
+encode_kwargs = {"normalize_embeddings": False}
+
+embeddings = HuggingFaceEmbeddings(
+    model_name=model_name, model_kwargs=model_kwargs, encode_kwargs=encode_kwargs
 )
 
 vector_db = Milvus(
-    embeddings,
+    embedding_function=embeddings,
+    collection_name="LangChainCollection",
     connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT},
-    collection_name="collection_retrival",
+    drop_old=True,
 )

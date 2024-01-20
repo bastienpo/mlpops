@@ -169,3 +169,7 @@ cython_debug/
 **/data
 
 gradio_cached_examples/
+
+# Dockerfiles
+/volumes
+/data
