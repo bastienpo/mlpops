@@ -14,7 +14,7 @@ The following repository presents an MLOps project developed by students at EPIT
 The following schema presents the project's architecture.
 
 <p align="center">
-  <img src="/docs/archi.png" width="550" height="375">
+  <img src="/docs/archi.png" width="550" height="450">
 </p>
 
 ### How to run the project
