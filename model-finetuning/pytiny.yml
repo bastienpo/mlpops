@@ -1,4 +1,4 @@
-base_model: TinyLla/TinyLlama-1.1B-Chat-v1.0
+base_model: TinyLlama/TinyLlama-1.1B-Chat-v1.0
 model_type: LlamaForCausalLM
 tokenizer_type: LlamaTokenizer
 is_llama_derived_model: true
@@ -9,9 +9,8 @@ load_in_4bit: true
 strict: false
 
 datasets:
-  datasets:
     - path: mlabonne/Evol-Instruct-Python-1k
-    type: alpaca
+      type: alpaca
 dataset_prepared_path:
 val_set_size: 0.02
 output_dir: ./qlora-out
