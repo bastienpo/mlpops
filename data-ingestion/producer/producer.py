@@ -7,7 +7,9 @@ PULSAR_HOST = "pulsar://localhost:6650"
 if __name__ == "__main__":
     loader = WebBaseLoader(
         [
-            "https://fr.wikipedia.org/wiki/Google",
+            "https://engineering.fb.com/2024/01/18/developer-tools/lazy-imports-cinder-machine-learning-meta/",
+            "https://peps.python.org/pep-0690/",
+            "https://developers.facebook.com/blog/post/2022/06/15/python-lazy-imports-with-cinder/"
         ]
     )
 
