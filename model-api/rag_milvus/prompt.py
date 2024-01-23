@@ -2,12 +2,8 @@
 Prompt generation for RAG model with Langchain
 """
 
-llama_prompt_template = """
-<s>[INST] <<SYS>>
-Respond with short answers with factual informations.
-
+llama_prompt_template = """Answer the question based only on the following context:
 {context}
-<</SYS>>
 
-{message} [/INST]
+Question: {question}
 """

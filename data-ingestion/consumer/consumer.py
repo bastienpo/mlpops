@@ -22,9 +22,7 @@ if __name__ == "__main__":
 
     milvus_store = Milvus(
         embedding_function = embeddings,
-        collection_name = "LangChainCollection",
         connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT},
-        drop_old = True,
     )
 
     while True:

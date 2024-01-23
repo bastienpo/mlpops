@@ -5,7 +5,7 @@ def response(message, history):
     res = requests.post(
         "http://localhost:9042/chain", 
         json={
-            "user_input": message, 
+            "question": message, 
         }
     )
 

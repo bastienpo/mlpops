@@ -11,7 +11,7 @@ if __name__ == "__main__":
     )
 
     docs = loader.load()
-    splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=0)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=0)
     splits = splitter.split_documents(docs)
 
     client = Client(PULSAR_HOST)

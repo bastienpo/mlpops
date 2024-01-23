@@ -2,8 +2,11 @@ from fastapi import FastAPI, status
 from rag_milvus import chain, query_store
 from pydantic import BaseModel
 
+
+# print(chain.invoke("How are you "))
+
 class LLMRequest(BaseModel):
-    user_input: str
+    question: str
 
 class HealthCheck(BaseModel):
     """Response model to validate and return when performing a health check."""
@@ -33,6 +36,5 @@ def get_health() -> HealthCheck:
 
 @app.post("/chain")
 def read_chain(llm_request: LLMRequest):
-    resquest = llm_request.dict()
-    query_store.add_texts([llm_request.user_input])
-    return chain.invoke(resquest)
+    query_store.add_texts([llm_request.question])
+    return chain.invoke(llm_request.question)

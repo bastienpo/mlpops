@@ -18,7 +18,5 @@ embeddings = HuggingFaceEmbeddings(
 
 vector_db = Milvus(
     embedding_function=embeddings,
-    collection_name="LangChainCollection",
     connection_args={"host": MILVUS_HOST, "port": MILVUS_PORT},
-    drop_old=True,
 )
