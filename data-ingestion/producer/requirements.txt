@@ -2,4 +2,7 @@ beautifulsoup4==4.12.2
 langchain==0.1.0 
 langchain-community==0.0.12 
 langchain-core==0.1.10 
-pulsar-client==3.4.0 
+pulsar-client==3.4.0
+unstructured[pdf]==0.12.2
+torch==2.1.2
+torchvision=0.16.2 

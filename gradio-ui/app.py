@@ -14,9 +14,9 @@ def response(message, history):
 demo = gr.ChatInterface(
     response,
     chatbot=gr.Chatbot(height=300),
-    textbox=gr.Textbox(placeholder="What is 2 + 2 ?", container=False, scale=7),
-    title="Mlpops chatbot",
-    examples=["Hello", "Am I cool?", "Are tomatoes vegetables?"],
+    textbox=gr.Textbox(placeholder="On what data has the model been trained ?", container=False, scale=7),
+    title="Mlpops RAG Chatbot",
+    examples=["What BLEU score does the model achieve?", "What is the composition of the encoder?", "On what data has the model been trained?"],
     cache_examples=False,
     retry_btn=None,
     undo_btn="Delete Previous",
